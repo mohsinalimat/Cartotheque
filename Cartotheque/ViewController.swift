@@ -7,19 +7,76 @@
 //
 
 import UIKit
+import SnapKit
+import SwiftyJSON
 
 class ViewController: UIViewController {
-
+    
+    let cartotheque: Cartotheque = {
+        let cartotheque = Cartotheque()
+        cartotheque.backgroundColor = .red
+        return cartotheque
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        view.addSubview(cartotheque)
+        setupViews()
+        if let cardDataItems = loadCardData() {
+            let cards = getCards(cardDataItems)
+            cartotheque.cards = cards
+        }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    func setupViews() {
+        cartotheque.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
-
-
+    
+    
+    func loadCardData() -> [CardData]? {
+        if let path = Bundle.main.path(forResource: "credit_cards", ofType: "json"), let jsonData = NSData(contentsOf: URL(fileURLWithPath: path)) {
+            do {
+                let jsonArray = try JSON(data: jsonData as Data)
+                let cards = jsonArray.map { CardData(json: $0.1) }
+                return cards
+            } catch {
+                print("Error: couldn't parse JSON")
+            }
+            
+        }
+        return nil
+    }
+    
+    func getCards(_ cardDataItems: [CardData]) -> [CardView] {
+        guard cardDataItems.count > 0 else {
+            return []
+        }
+        
+        let f = self.view.frame
+        var cardViews = [CardView]()
+        var i = 1
+        
+        for card in cardDataItems {
+            let v = CardView(inFrame: self.view.frame)
+            v.card = card
+            let white = CGFloat(1.0 / 10 * CGFloat(i))
+            let color = UIColor(white: white, alpha: 1)
+            v.backgroundColor = color
+            cardViews.append(v)
+            i = white > 0.8 ? 1 : i + 1
+        }
+        
+        let emptyCardWithOverlay = CardView(inFrame: self.view.frame)
+        emptyCardWithOverlay.isTemplate = true
+        emptyCardWithOverlay.frame.origin.y = self.view.frame.height
+        cardViews.append(emptyCardWithOverlay)
+        return cardViews
+    }
+    
+    
 }
 

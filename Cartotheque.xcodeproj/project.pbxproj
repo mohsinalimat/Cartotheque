@@ -12,9 +12,19 @@
 		392730FB20CC205500506EF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392730F920CC205500506EF2 /* Main.storyboard */; };
 		392730FD20CC205800506EF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 392730FC20CC205800506EF2 /* Assets.xcassets */; };
 		3927310020CC205800506EF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392730FE20CC205800506EF2 /* LaunchScreen.storyboard */; };
+		3927310820CC207E00506EF2 /* credit_cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 3927310720CC207E00506EF2 /* credit_cards.json */; };
+		3927310A20CC20A600506EF2 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927310920CC20A500506EF2 /* CardData.swift */; };
+		3927310C20CC238700506EF2 /* Cartotheque.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927310B20CC238700506EF2 /* Cartotheque.swift */; };
+		3927310E20CC23B900506EF2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927310D20CC23B900506EF2 /* CardView.swift */; };
+		395C2BF320CD48A40021AF2B /* FALTextFieldMask+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C2BF120CD48A40021AF2B /* FALTextFieldMask+Extensions.swift */; };
+		395C2BF420CD48A40021AF2B /* FALTextFieldMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395C2BF220CD48A40021AF2B /* FALTextFieldMask.swift */; };
+		3967C52B20CD459100D49574 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3967C52A20CD459100D49574 /* Extensions.swift */; };
+		3967C52D20CD45DB00D49574 /* CardForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3967C52C20CD45DB00D49574 /* CardForm.swift */; };
+		ADCFC6B85B8822CFB4F450A9 /* Pods_Cartotheque.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF69D1E513A023C199301E6 /* Pods_Cartotheque.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28C4D094F45F696B1C9A32DE /* Pods-Cartotheque.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartotheque.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cartotheque/Pods-Cartotheque.release.xcconfig"; sourceTree = "<group>"; };
 		392730F220CC205500506EF2 /* Cartotheque.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartotheque.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		392730F520CC205500506EF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		392730F720CC205500506EF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +32,16 @@
 		392730FC20CC205800506EF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		392730FF20CC205800506EF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3927310120CC205800506EF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3927310720CC207E00506EF2 /* credit_cards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = credit_cards.json; sourceTree = "<group>"; };
+		3927310920CC20A500506EF2 /* CardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
+		3927310B20CC238700506EF2 /* Cartotheque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cartotheque.swift; sourceTree = "<group>"; };
+		3927310D20CC23B900506EF2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		395C2BF120CD48A40021AF2B /* FALTextFieldMask+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FALTextFieldMask+Extensions.swift"; sourceTree = "<group>"; };
+		395C2BF220CD48A40021AF2B /* FALTextFieldMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FALTextFieldMask.swift; sourceTree = "<group>"; };
+		3967C52A20CD459100D49574 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3967C52C20CD45DB00D49574 /* CardForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardForm.swift; sourceTree = "<group>"; };
+		7E9F15502A4F9A302D0964B5 /* Pods-Cartotheque.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cartotheque.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cartotheque/Pods-Cartotheque.debug.xcconfig"; sourceTree = "<group>"; };
+		ABF69D1E513A023C199301E6 /* Pods_Cartotheque.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cartotheque.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADCFC6B85B8822CFB4F450A9 /* Pods_Cartotheque.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +61,8 @@
 			children = (
 				392730F420CC205500506EF2 /* Cartotheque */,
 				392730F320CC205500506EF2 /* Products */,
+				F9A5798E144ECA8C6A6DEE33 /* Pods */,
+				C9F632322743B49C10FEB68F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +79,45 @@
 			children = (
 				392730F520CC205500506EF2 /* AppDelegate.swift */,
 				392730F720CC205500506EF2 /* ViewController.swift */,
+				3927310920CC20A500506EF2 /* CardData.swift */,
+				3927310B20CC238700506EF2 /* Cartotheque.swift */,
+				3967C52E20CD464000D49574 /* View */,
+				3967C52A20CD459100D49574 /* Extensions.swift */,
+				3927310720CC207E00506EF2 /* credit_cards.json */,
 				392730F920CC205500506EF2 /* Main.storyboard */,
 				392730FC20CC205800506EF2 /* Assets.xcassets */,
 				392730FE20CC205800506EF2 /* LaunchScreen.storyboard */,
 				3927310120CC205800506EF2 /* Info.plist */,
 			);
 			path = Cartotheque;
+			sourceTree = "<group>";
+		};
+		3967C52E20CD464000D49574 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3927310D20CC23B900506EF2 /* CardView.swift */,
+				3967C52C20CD45DB00D49574 /* CardForm.swift */,
+				395C2BF220CD48A40021AF2B /* FALTextFieldMask.swift */,
+				395C2BF120CD48A40021AF2B /* FALTextFieldMask+Extensions.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9F632322743B49C10FEB68F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABF69D1E513A023C199301E6 /* Pods_Cartotheque.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9A5798E144ECA8C6A6DEE33 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E9F15502A4F9A302D0964B5 /* Pods-Cartotheque.debug.xcconfig */,
+				28C4D094F45F696B1C9A32DE /* Pods-Cartotheque.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +127,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3927310420CC205800506EF2 /* Build configuration list for PBXNativeTarget "Cartotheque" */;
 			buildPhases = (
+				CC395006FC6F1043A563C0C9 /* [CP] Check Pods Manifest.lock */,
 				392730EE20CC205500506EF2 /* Sources */,
 				392730EF20CC205500506EF2 /* Frameworks */,
 				392730F020CC205500506EF2 /* Resources */,
+				70F889E5FC4B26C4DEDF4FF7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,6 +180,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3927310820CC207E00506EF2 /* credit_cards.json in Resources */,
 				3927310020CC205800506EF2 /* LaunchScreen.storyboard in Resources */,
 				392730FD20CC205800506EF2 /* Assets.xcassets in Resources */,
 				392730FB20CC205500506EF2 /* Main.storyboard in Resources */,
@@ -130,13 +189,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		70F889E5FC4B26C4DEDF4FF7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Cartotheque/Pods-Cartotheque-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMaskTextfield/SwiftMaskTextfield.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMaskTextfield.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cartotheque/Pods-Cartotheque-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC395006FC6F1043A563C0C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Cartotheque-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		392730EE20CC205500506EF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				392730F820CC205500506EF2 /* ViewController.swift in Sources */,
+				3967C52B20CD459100D49574 /* Extensions.swift in Sources */,
+				3927310C20CC238700506EF2 /* Cartotheque.swift in Sources */,
+				3927310A20CC20A600506EF2 /* CardData.swift in Sources */,
 				392730F620CC205500506EF2 /* AppDelegate.swift in Sources */,
+				395C2BF320CD48A40021AF2B /* FALTextFieldMask+Extensions.swift in Sources */,
+				395C2BF420CD48A40021AF2B /* FALTextFieldMask.swift in Sources */,
+				3927310E20CC23B900506EF2 /* CardView.swift in Sources */,
+				3967C52D20CD45DB00D49574 /* CardForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +387,7 @@
 		};
 		3927310520CC205800506EF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E9F15502A4F9A302D0964B5 /* Pods-Cartotheque.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +406,7 @@
 		};
 		3927310620CC205800506EF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28C4D094F45F696B1C9A32DE /* Pods-Cartotheque.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

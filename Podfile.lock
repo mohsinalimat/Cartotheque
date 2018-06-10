@@ -1,0 +1,24 @@
+PODS:
+  - SnapKit (4.0.0)
+  - SwiftMaskTextfield (0.0.3)
+  - SwiftyJSON (4.1.0)
+
+DEPENDENCIES:
+  - SnapKit (~> 4.0.0)
+  - SwiftMaskTextfield
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SnapKit
+    - SwiftMaskTextfield
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftMaskTextfield: 22e993bee1f4968bfca8be7654c9046f952631d8
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+
+PODFILE CHECKSUM: b9390226aae018b18da18332ca046d255cd72635
+
+COCOAPODS: 1.5.0
