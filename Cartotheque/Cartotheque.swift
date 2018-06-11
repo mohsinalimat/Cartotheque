@@ -26,6 +26,16 @@ class Cartotheque: UIView {
        return (self.frame.height - cards![0].frame.height) - self.verticalEdgePadding
     }()
     
+    lazy var title: UILabel = {
+        let selectCardLabel = UILabel()
+        selectCardLabel.textColor = .white
+        selectCardLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.light)
+        selectCardLabel.textAlignment = .center
+        selectCardLabel.text = "SELECT CARD"
+        selectCardLabel.frame = CGRect(x: 0, y: frame.height / 7, width: frame.width, height: 30)
+        return selectCardLabel
+    }()
+    
     lazy var cardForm: CardForm = {
         let cardForm = CardForm(inFrame: self.frame)
         cardForm.alpha = 0
@@ -85,6 +95,7 @@ class Cartotheque: UIView {
         if cards != nil {
             cards?.append(templateCard)
         }
+        addSubview(title)
         setupCards()
         addSubview(cardForm)
         animateCardsToStartPosition()
