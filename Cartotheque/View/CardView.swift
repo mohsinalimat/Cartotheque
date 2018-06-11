@@ -66,7 +66,7 @@ class CardView: UIView {
         overlay.translatesAutoresizingMaskIntoConstraints = false
         overlay.addSubview(self.dummyLabel)
         overlay.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[v0]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": self.dummyLabel]))
-        overlay.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[v0]-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": self.dummyLabel]))
+        overlay.addConstraint(NSLayoutConstraint(item: dummyLabel, attribute: NSLayoutAttribute.centerY, relatedBy: .equal, toItem: overlay, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
         return overlay
     }()
     
@@ -182,6 +182,15 @@ class CardView: UIView {
         self.addSubview(overlay)
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": overlay]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": overlay]))
+    }
+    
+    
+    func hideOverlay() {
+        self.overlay.alpha = 0
+    }
+    
+    func showOverlay() {
+        self.overlay.alpha = 1
     }
 
 }

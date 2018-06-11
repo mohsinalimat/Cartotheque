@@ -12,7 +12,7 @@ class Cartotheque: UIView {
     
     private var currentCardIndex = 0
     var animationDuration = 1.25
-    var animationDelayBetweenCardsInStack = 0.15
+    var animationDelayBetweenCardsInStack = 0.0
     
     var stackOffset: CGFloat = 55.0
     var dataSource: CartothequeDataSource?
@@ -121,6 +121,7 @@ class Cartotheque: UIView {
         animateUpToTop(index: currentCardIndex)
         let nextIndex = currentCardIndex + 1
         animateUpToCenter(index: nextIndex)
+        templateCardUpAnimation(index: nextIndex)
         repositionStack(isUp: true)
         changeCurrentIndex(by: 1)
     }
@@ -140,17 +141,26 @@ class Cartotheque: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             cards[index].frame.origin.y = self.centralCardYPosition
+        })
+    }
+    
+    
+    func templateCardUpAnimation(index: Int) {
+        guard let cards = cards else {
+            return
+        }
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             if index == cards.count - 2 {
                 cards[cards.count - 1].frame.origin.y = self.frame.height - cards[index].frame.height
             }
             if index == cards.count - 1 {
                 for i in 2...cards.count {
-                    cards[cards.count - i].frame.origin.y = -cards[cards.count - 2].frame.height
+                    cards[cards.count - i].frame.origin.y = -(cards[cards.count - 2].frame.height) * 1.2
                 }
                 cards[cards.count - 1].frame.origin.y = 0
+                cards[cards.count - 1].hideOverlay()
             }
         })
-        
     }
     
     func swipeDown() {
@@ -160,6 +170,7 @@ class Cartotheque: UIView {
         let prevIndex = currentCardIndex - 1
         animateDownToCenter(index: prevIndex)
         animateDownToStack(index: currentCardIndex)
+        templateCardDownAnimation(index: currentCardIndex)
         repositionStack(isUp: false)
         changeCurrentIndex(by: -1)
     }
@@ -187,6 +198,25 @@ class Cartotheque: UIView {
                 cards[index].frame.origin.y = theEndPositionOfCentralCard
             })
         }
+    }
+    
+    func templateCardDownAnimation(index: Int) {
+        guard let cards = cards else {
+            return
+        }
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+            if index == cards.count - 1 {
+                cards[cards.count - 1].frame.origin.y = self.frame.height - cards[index].frame.height
+                for i in 3...cards.count {
+                    cards[cards.count - i].frame.origin.y = -(cards[index].frame.height / 6) * 5
+                }
+                cards[cards.count - 1].showOverlay()
+                cards[cards.count - 1].frame.origin.y = self.frame.height - cards[cards.count - 1].frame.height
+            }
+            if index == cards.count - 2 {
+                cards[cards.count - 1].frame.origin.y = self.frame.height
+            }
+        })
         
     }
     
