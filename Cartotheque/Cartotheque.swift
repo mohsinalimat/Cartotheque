@@ -15,10 +15,15 @@ class Cartotheque: UIView {
     var animationDelayBetweenCardsInStack = 0.0
     
     var stackOffset: CGFloat = 55.0
+    var verticalPadding: CGFloat = 10
     var dataSource: CartothequeDataSource?
     
     lazy private var centralCardYPosition: CGFloat = {
         return (frame.height / 2) - (cards![0].frame.height / 6) * 5
+    }()
+    
+    lazy private var bottomCardYPosition: CGFloat = {
+       return (self.frame.height - cards![0].frame.height) - self.verticalPadding
     }()
     
     private (set) var cards: [CardView]?
@@ -37,6 +42,10 @@ class Cartotheque: UIView {
             return
         }
         for card in cards {
+            if !card.isTemplate {
+                card.frame.origin.y = bottomCardYPosition
+            }
+            card.center.x = self.center.x
             self.addSubview(card)
             print(card.frame)
         }
@@ -70,9 +79,7 @@ class Cartotheque: UIView {
             cards?.append(templateCard)
         }
         setupCards()
-        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseInOut], animations: {
-            self.putCardsAtInitPosition()
-        }, completion: nil)
+        animateCardsToStartPosition()
         animateUpToCenter(index: 0)
     }
     
@@ -83,19 +90,21 @@ class Cartotheque: UIView {
         return emptyCardWithOverlay
     }
     
-    private func putCardsAtInitPosition() {
+    private func animateCardsToStartPosition() {
         guard let cards = cards else {
             return
         }
         let startIndex = currentCardIndex
-        for i in 1 ..< cards.count - 1 {
-            let constant = stackOffset * CGFloat(i - 1)
-            if cards[i].isTemplate {
-                cards[i].frame.origin.y = frame.height
-            } else {
-                cards[i].frame.origin.y = (frame.height - cards[0].frame.height) + constant
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseInOut], animations: {
+            for i in 1 ..< cards.count - 1 {
+                let constant = self.stackOffset * CGFloat(i - 1)
+                if cards[i].isTemplate {
+                    cards[i].frame.origin.y = self.frame.height
+                } else {
+                    cards[i].frame.origin.y = self.bottomCardYPosition + constant
+                }
             }
-        }
+        })
     }
     
     
@@ -151,13 +160,13 @@ class Cartotheque: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             if index == cards.count - 2 {
-                cards[cards.count - 1].frame.origin.y = self.frame.height - cards[index].frame.height
+                cards[cards.count - 1].frame.origin.y = self.bottomCardYPosition
             }
             if index == cards.count - 1 {
                 for i in 2...cards.count {
                     cards[cards.count - i].frame.origin.y = -(cards[cards.count - 2].frame.height) * 1.2
                 }
-                cards[cards.count - 1].frame.origin.y = 0
+                cards[cards.count - 1].frame.origin.y = self.verticalPadding
                 cards[cards.count - 1].hideOverlay()
             }
         })
@@ -193,7 +202,7 @@ class Cartotheque: UIView {
                 cards[index].frame.origin.y = self.frame.origin.y
             })
         } else {
-            let theEndPositionOfCentralCard = index >= cards.count - 1 ? cards[index + 1].frame.origin.y : frame.height - cards[index].frame.height
+            let theEndPositionOfCentralCard = index >= cards.count - 1 ? cards[index + 1].frame.origin.y : bottomCardYPosition
             UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
                 cards[index].frame.origin.y = theEndPositionOfCentralCard
             })
@@ -206,12 +215,12 @@ class Cartotheque: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             if index == cards.count - 1 {
-                cards[cards.count - 1].frame.origin.y = self.frame.height - cards[index].frame.height
+                cards[cards.count - 1].frame.origin.y = self.bottomCardYPosition
                 for i in 3...cards.count {
                     cards[cards.count - i].frame.origin.y = -(cards[index].frame.height / 6) * 5
                 }
                 cards[cards.count - 1].showOverlay()
-                cards[cards.count - 1].frame.origin.y = self.frame.height - cards[cards.count - 1].frame.height
+                cards[cards.count - 1].frame.origin.y = self.bottomCardYPosition
             }
             if index == cards.count - 2 {
                 cards[cards.count - 1].frame.origin.y = self.frame.height

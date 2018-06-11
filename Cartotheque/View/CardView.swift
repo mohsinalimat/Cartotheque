@@ -101,7 +101,7 @@ class CardView: UIView {
         let margin: CGFloat = 10.0
         let heigth = viewFrame.width / 1.585
         let width = viewFrame.width - (margin * 2.0)
-        let frame = CGRect(x: 10, y: viewFrame.height - heigth - 10, width: width, height: heigth)
+        let frame = CGRect(x: 0, y: 0, width: width, height: heigth)
         self.init(frame: frame)
     }
     
