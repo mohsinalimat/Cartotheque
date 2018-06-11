@@ -14,21 +14,16 @@ class ViewController: UIViewController {
     
     let cartotheque: Cartotheque = {
         let cartotheque = Cartotheque()
-        cartotheque.backgroundColor = .red
+        cartotheque.backgroundColor = .lightGray
         return cartotheque
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(cartotheque)
+        cartotheque.dataSource = self
         setupViews()
-        if let cardDataItems = loadCardData() {
-            let cards = getCards(cardDataItems)
-            cartotheque.cards = cards
-        }
-        
     }
-    
     
     func setupViews() {
         cartotheque.snp.makeConstraints { (make) in
@@ -46,7 +41,6 @@ class ViewController: UIViewController {
             } catch {
                 print("Error: couldn't parse JSON")
             }
-            
         }
         return nil
     }
@@ -69,14 +63,19 @@ class ViewController: UIViewController {
             cardViews.append(v)
             i = white > 0.8 ? 1 : i + 1
         }
-        
-        let emptyCardWithOverlay = CardView(inFrame: self.view.frame)
-        emptyCardWithOverlay.isTemplate = true
-        emptyCardWithOverlay.frame.origin.y = self.view.frame.height
-        cardViews.append(emptyCardWithOverlay)
         return cardViews
     }
     
+    
+}
+
+extension ViewController: CartothequeDataSource {
+    func cards() -> [CardView] {
+        guard let cardDataItems = loadCardData() else {
+            return []
+        }
+        return getCards(cardDataItems)
+    }
     
 }
 
