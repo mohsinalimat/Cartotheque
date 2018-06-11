@@ -28,8 +28,8 @@ class Cartotheque: UIView {
     
     lazy var cardForm: CardForm = {
         let cardForm = CardForm(inFrame: self.frame)
-        
         cardForm.alpha = 0
+        cardForm.delegate = self
         cardForm.frame.origin.y = frame.height
         return cardForm
     }()
@@ -278,6 +278,26 @@ class Cartotheque: UIView {
         }
     }
     
+}
+
+extension Cartotheque: CardFormDelegate {
+    func textDidChange(text: String, type: TextFieldType) {
+        guard let cards = cards else {
+            return
+        }
+        switch type {
+        case .cardholder:
+            cards.last?.cardholder.text = text
+        case .cardId:
+            cards.last?.title.text = text
+        case .expires:
+            cards.last?.expiration.text = text
+        case .number:
+            cards.last?.number.text = text
+        default:
+            print("default")
+        }
+    }
 }
 
 protocol CartothequeDataSource {
