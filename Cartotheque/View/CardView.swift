@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class CardView: UIView {
     
     var isTemplate = false {
@@ -156,7 +154,7 @@ class CardView: UIView {
         addSubview(cardholder)
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cardholderTitle]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cardholder]))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(10)]-10-[v1(30)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cardholderTitle, "v1": cardholder]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(12)]-10-[v1(30)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cardholderTitle, "v1": cardholder]))
     }
     
     fileprivate func setupExpiration() {
@@ -167,7 +165,7 @@ class CardView: UIView {
         addSubview(expiration)
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": expirationTitle]))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": expiration]))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(10)]-10-[v1(30)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": expirationTitle, "v1": expiration]))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(12)]-10-[v1(30)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": expirationTitle, "v1": expiration]))
     }
     
     fileprivate func setTextColor(color: UIColor) {

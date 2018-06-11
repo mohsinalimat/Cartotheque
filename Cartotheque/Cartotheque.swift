@@ -18,6 +18,7 @@ class Cartotheque: UIView {
     var verticalEdgePadding: CGFloat = 20
     var dataSource: CartothequeDataSource?
     
+    
     lazy private var centralCardYPosition: CGFloat = {
         return (frame.height / 2) - (cards![0].frame.height / 6) * 5
     }()
@@ -102,7 +103,7 @@ class Cartotheque: UIView {
         animateUpToCenter(index: 0)
     }
     
-    func getTemplateCard() -> CardView {
+    private func getTemplateCard() -> CardView {
         let emptyCardWithOverlay = CardView(inFrame: frame)
         emptyCardWithOverlay.isTemplate = true
         emptyCardWithOverlay.frame.origin.y = frame.height
@@ -170,11 +171,12 @@ class Cartotheque: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             cards[index].frame.origin.y = self.centralCardYPosition
+            self.backgroundColor = cards[index].backgroundColor
         })
     }
     
     
-    func templateCardUpAnimation(index: Int) {
+    private func templateCardUpAnimation(index: Int) {
         guard let cards = cards else {
             return
         }
@@ -192,7 +194,7 @@ class Cartotheque: UIView {
         })
     }
     
-    func animateFormUp() {
+    private func animateFormUp() {
         print(currentCardIndex)
         guard let cards = cards, currentCardIndex == cards.count - 2 else {
             return
@@ -206,7 +208,7 @@ class Cartotheque: UIView {
         })
     }
     
-    func animateFormDown() {
+    private func animateFormDown() {
         print(currentCardIndex)
         guard let cards = cards, currentCardIndex == cards.count - 1 else {
             return
@@ -236,6 +238,7 @@ class Cartotheque: UIView {
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             cards[index].frame.origin.y = self.centralCardYPosition
+            self.backgroundColor = cards[index].backgroundColor
         })
     }
     
@@ -255,15 +258,17 @@ class Cartotheque: UIView {
         }
     }
     
-    func templateCardDownAnimation(index: Int) {
+    private func templateCardDownAnimation(index: Int) {
         guard let cards = cards else {
             return
         }
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
             if index == cards.count - 1 {
                 cards[cards.count - 1].frame.origin.y = self.bottomCardYPosition
-                for i in 3...cards.count {
-                    cards[cards.count - i].frame.origin.y = -(cards[index].frame.height / 6) * 5
+                if cards.count > 3 {
+                    for i in 3...cards.count {
+                        cards[cards.count - i].frame.origin.y = -(cards[index].frame.height / 6) * 5
+                    }
                 }
                 cards[cards.count - 1].showOverlay()
                 cards[cards.count - 1].frame.origin.y = self.bottomCardYPosition

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     let cartotheque: Cartotheque = {
         let cartotheque = Cartotheque()
-        cartotheque.backgroundColor = .lightGray
+        cartotheque.backgroundColor = .white
         return cartotheque
     }()
     
