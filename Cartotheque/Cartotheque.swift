@@ -15,7 +15,7 @@ class Cartotheque: UIView {
     var animationDelayBetweenCardsInStack = 0.0
     
     var stackOffset: CGFloat = 55.0
-    var verticalPadding: CGFloat = 10
+    var verticalEdgePadding: CGFloat = 20
     var dataSource: CartothequeDataSource?
     
     lazy private var centralCardYPosition: CGFloat = {
@@ -23,7 +23,15 @@ class Cartotheque: UIView {
     }()
     
     lazy private var bottomCardYPosition: CGFloat = {
-       return (self.frame.height - cards![0].frame.height) - self.verticalPadding
+       return (self.frame.height - cards![0].frame.height) - self.verticalEdgePadding
+    }()
+    
+    lazy var cardForm: CardForm = {
+        let cardForm = CardForm(inFrame: self.frame)
+        
+        cardForm.alpha = 0
+        cardForm.frame.origin.y = frame.height
+        return cardForm
     }()
     
     private (set) var cards: [CardView]?
@@ -47,7 +55,6 @@ class Cartotheque: UIView {
             }
             card.center.x = self.center.x
             self.addSubview(card)
-            print(card.frame)
         }
     }
     
@@ -79,6 +86,7 @@ class Cartotheque: UIView {
             cards?.append(templateCard)
         }
         setupCards()
+        addSubview(cardForm)
         animateCardsToStartPosition()
         animateUpToCenter(index: 0)
     }
@@ -132,6 +140,7 @@ class Cartotheque: UIView {
         animateUpToCenter(index: nextIndex)
         templateCardUpAnimation(index: nextIndex)
         repositionStack(isUp: true)
+        animateFormUp()
         changeCurrentIndex(by: 1)
     }
     
@@ -166,9 +175,34 @@ class Cartotheque: UIView {
                 for i in 2...cards.count {
                     cards[cards.count - i].frame.origin.y = -(cards[cards.count - 2].frame.height) * 1.2
                 }
-                cards[cards.count - 1].frame.origin.y = self.verticalPadding
+                cards[cards.count - 1].frame.origin.y = self.verticalEdgePadding
                 cards[cards.count - 1].hideOverlay()
             }
+        })
+    }
+    
+    func animateFormUp() {
+        print(currentCardIndex)
+        guard let cards = cards, currentCardIndex == cards.count - 2 else {
+            return
+        }
+        
+        let padding: CGFloat = 10
+        self.cardForm.isHidden = false
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.cardForm.frame.origin.y = self.verticalEdgePadding + cards[0].frame.height + padding
+            self.cardForm.alpha = 1
+        })
+    }
+    
+    func animateFormDown() {
+        print(currentCardIndex)
+        guard let cards = cards, currentCardIndex == cards.count - 1 else {
+            return
+        }
+        UIView.animate(withDuration: animationDuration, delay: 0.0, options: [.curveEaseInOut], animations: {
+            self.cardForm.frame.origin.y = self.frame.height
+            self.cardForm.alpha = 0
         })
     }
     
@@ -181,6 +215,7 @@ class Cartotheque: UIView {
         animateDownToStack(index: currentCardIndex)
         templateCardDownAnimation(index: currentCardIndex)
         repositionStack(isUp: false)
+        animateFormDown()
         changeCurrentIndex(by: -1)
     }
     
