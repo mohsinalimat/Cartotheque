@@ -11,7 +11,7 @@ import UIKit
 class Cartotheque: UIView {
     
     private var currentCardIndex = 0
-    var animationDuration = 1.25
+    var animationDuration = 0.85
     var animationDelayBetweenCardsInStack = 0.0
     
     var stackOffset: CGFloat = 55.0
@@ -50,6 +50,9 @@ class Cartotheque: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setGestures()
+        setDismissKeyboardGesture()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -294,6 +297,11 @@ class Cartotheque: UIView {
         }
     }
     
+    func setDismissKeyboardGesture() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        addGestureRecognizer(tap)
+    }
+    
 }
 
 extension Cartotheque: CardFormDelegate {
@@ -312,6 +320,38 @@ extension Cartotheque: CardFormDelegate {
             cards.last?.number.text = text
         default:
             print("default")
+        }
+    }
+    
+}
+
+extension Cartotheque {
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.frame.origin.y = 0
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.frame.origin.y == 0 {
+                UIView.animate(withDuration: 0.4) { [unowned self] in
+                    let shorterDimension = self.frame.height > self.frame.width ? self.frame.width : self.frame.height
+                    let longerDimension = self.frame.height > self.frame.width ? self.frame.height : self.frame.width
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        self.frame.origin.y -= keyboardSize.height * 0.75
+                    } else {
+                        self.frame.origin.y -= keyboardSize.height * 0.65 + shorterDimension * 0.04
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        UIView.animate(withDuration: 0.4) { [unowned self] in
+            self.frame.origin.y = 0
         }
     }
 }

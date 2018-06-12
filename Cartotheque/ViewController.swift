@@ -12,6 +12,10 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
     
+    
+    var colors = [UIColor(hex: 0x00b894), UIColor(hex: 0x00b894), UIColor(hex: 0x6c5ce7),
+                  UIColor(hex: 0xf6b93b), UIColor(hex:0xB53471)]
+    
     let cartotheque: Cartotheque = {
         let cartotheque = Cartotheque()
         cartotheque.backgroundColor = .white
@@ -49,19 +53,15 @@ class ViewController: UIViewController {
         guard cardDataItems.count > 0 else {
             return []
         }
-        
-        let f = self.view.frame
         var cardViews = [CardView]()
         var i = 1
-        
         for card in cardDataItems {
             let v = CardView(inFrame: self.view.frame)
             v.card = card
-            let white = CGFloat(1.0 / 10 * CGFloat(i))
-            let color = UIColor(white: white, alpha: 1)
+            let color = colors[i % colors.count]
             v.backgroundColor = color
             cardViews.append(v)
-            i = white > 0.8 ? 1 : i + 1
+            i += 1
         }
         return cardViews
     }
